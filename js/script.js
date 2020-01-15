@@ -1,8 +1,30 @@
+let currentLetter = "O"
+let numTurns = 0
+let gameEnded = false
 
+function toggleLetter() {
+    if (currentLetter === "X"){ 
+        currentLetter = "O"
+    } else if (currentLetter === "O")  {
+        currentLetter = "X"
+    }
+}
 
+function performLogic(buttonId, tileId) {
+    $(buttonId).remove();
+    $(tileId).text(currentLetter);
+    toggleLetter();
+    addTurn();
+}
 
+function addTurn() {
+    numTurns = numTurns + 1;
 
-
+    if (numTurns === 9) {
+        $("#result").text("It's a draw!");
+        gameEnded = true;
+    }
+}
 
 
 $("#button1").click(function() {
@@ -10,11 +32,11 @@ $("#button1").click(function() {
 });
 
 $("#button2").click(function() {
-    performLogic("#button2","#tile2");
+     performLogic("#button2","#tile2"); 
 });
 
 $("#button3").click(function() {
-    performLogic("#button3","#tile3");
+  performLogic("#button3","#tile3");
 });
 
 $("#button4").click(function() {
